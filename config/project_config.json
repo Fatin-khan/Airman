@@ -1,0 +1,23 @@
+{
+  "dataset_source": "kagglehub",
+  "dataset_id": "joshuapaulbarnard/beijing-air-quality-pm25-from-2010-to-2017",
+  "download_method": "kagglehub.dataset_download()",
+  "token_location": "~/.kaggle/kaggle.json",
+  "token_permissions": "chmod 600",
+  "project_structure": {
+    "data": {
+      "raw": "downloaded CSV files",
+      "clean": "processed parquet/sqlite"
+    },
+    "pipeline.py": "ETL script",
+    "dashboard.py": "Streamlit app",
+    "docker-compose.yml": "container orchestration"
+  },
+  "pipeline_steps": [
+    "download_data()",
+    "extract()",
+    "transform()",
+    "load()"
+  ],
+  "notes": "Accept dataset rules on Kaggle website before downloading via API"
+}
