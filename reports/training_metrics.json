@@ -1,0 +1,74 @@
+{
+    "target_column": "pm2_5",
+    "feature_columns": [
+        "pm2_5",
+        "pm10_concentration_ug_m_3",
+        "so2_concentration_ug_m_3",
+        "no2_concentration_ug_m_3",
+        "co_concentration_ug_m_3",
+        "o3_concentration_ug_m_3",
+        "humidity",
+        "pressure_hpa",
+        "wind_speed_m_s",
+        "precipitation_mm_hourly",
+        "dew_point_celsius",
+        "temperature_celsius"
+    ],
+    "sequence_length": 24,
+    "train_ratio": 0.8,
+    "epochs": 5,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "train_rows": 50221,
+    "validation_rows": 12556,
+    "train_samples": 50197,
+    "validation_samples": 12532,
+    "train_date_start": "2010-01-01 00:00:00",
+    "train_date_end": "2015-09-24 18:00:00",
+    "validation_date_start": "2015-09-24 19:00:00",
+    "validation_date_end": "2017-02-28 23:00:00",
+    "final_metrics": {
+        "epoch": 5,
+        "train_loss": 0.0002335319986214638,
+        "val_loss": 0.0004280493957551771,
+        "val_mae_pm25": 5.879129409790039,
+        "val_rmse_pm25": 10.810983540469604
+    },
+    "history": [
+        {
+            "epoch": 1,
+            "train_loss": 0.0014568577567817438,
+            "val_loss": 0.0011224506584309284,
+            "val_mae_pm25": 10.668707847595215,
+            "val_rmse_pm25": 17.506603629896258
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.00039492304014190454,
+            "val_loss": 0.0006174292061211107,
+            "val_mae_pm25": 7.376129150390625,
+            "val_rmse_pm25": 12.984100008369612
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.00030339562688936884,
+            "val_loss": 0.0005777784796277307,
+            "val_mae_pm25": 7.165152072906494,
+            "val_rmse_pm25": 12.560269133970555
+        },
+        {
+            "epoch": 4,
+            "train_loss": 0.00026216313607596966,
+            "val_loss": 0.00048384302293013324,
+            "val_mae_pm25": 6.23414421081543,
+            "val_rmse_pm25": 11.493981818412285
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.0002335319986214638,
+            "val_loss": 0.0004280493957551771,
+            "val_mae_pm25": 5.879129409790039,
+            "val_rmse_pm25": 10.810983540469604
+        }
+    ]
+}
