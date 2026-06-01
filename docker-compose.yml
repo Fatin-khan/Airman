@@ -12,6 +12,25 @@ services:
       CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
     volumes:
       - clickhouse_data:/var/lib/clickhouse
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--user", "airman_user", "--password", "airman_password", "--query", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  airman-pipeline:
+    build: .
+    container_name: airman-pipeline
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+      - ./models:/app/models
+    command: python -m src.pipeline
 
 volumes:
   clickhouse_data:

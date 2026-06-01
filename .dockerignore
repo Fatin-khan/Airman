@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.git/
+.ipynb_checkpoints/
+
+data/raw/
+data/processed/
+models/
+reports/validation_predictions.csv
+
+.env
+.DS_Store

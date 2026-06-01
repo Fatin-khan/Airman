@@ -14,6 +14,7 @@ data/processed/*
 # Keep empty folder placeholders
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+reports/validation_predictions.csv
 
 # Models
 models/*
