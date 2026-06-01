@@ -1,16 +1,17 @@
 # Environment variables
 .env
 
-# Python
+# Python virtual environment
 venv/
+.venv/
 __pycache__/
 *.pyc
 
-# Data files
+# Raw and processed data
 data/raw/*
 data/processed/*
 
-# Keep folder structure
+# Keep empty folder placeholders
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
