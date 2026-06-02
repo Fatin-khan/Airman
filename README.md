@@ -469,3 +469,15 @@ ClickHouse / processed CSV
 ## Notes
 
 This project is currently built using local storage first. AWS S3 integration is planned for a later sprint after the local ETL and database workflow are stable.
+
+## Sprint 4 — Docker and Jenkins Automation
+
+During Sprint 4, the Airman project was prepared for local DevOps automation.
+
+The project was containerized using Docker so that the ETL pipeline can run in a consistent environment. A Dockerfile and .dockerignore file were added, and the pipeline was tested successfully inside a Docker container.
+
+Docker Compose was also added to manage multiple services. The compose setup runs the Airman pipeline together with a ClickHouse database container, allowing the local ETL workflow to be started with one command.
+
+Jenkins was installed and configured for CI/CD automation. A Jenkinsfile was added to the project, and Jenkins was connected to the GitHub repository. The Jenkins pipeline checks the project structure, installs dependencies, verifies important Python modules, and archives available report artifacts such as training_metrics.json.
+
+Cloud deployment, AWS S3, and Lambda triggers are postponed for a future sprint. For now, the project remains local-first, using Docker, Docker Compose, and Jenkins for automation.
