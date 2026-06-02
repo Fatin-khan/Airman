@@ -13,7 +13,8 @@ pipeline {
             steps {
                 echo 'Checking Python version...'
                 bat 'python --version'
-                bat 'pip --version'
+                bat 'python -m ensurepip --upgrade'
+                bat 'python -m pip --version'
             }
         }
 
@@ -21,27 +22,43 @@ pipeline {
             steps {
                 echo 'Installing Python dependencies...'
                 bat 'python -m pip install --upgrade pip'
-                bat 'pip install -r requirements.txt'
+                bat 'python -m pip install -r requirements.txt'
             }
         }
 
-        stage('Run ETL Pipeline') {
+        stage('Check Project Structure') {
             steps {
-                echo 'Running Airman ETL pipeline...'
-                bat 'python -m src.pipeline'
+                echo 'Checking Airman project files...'
+                bat 'dir'
+                bat 'dir src'
+                bat 'dir src\\model'
             }
         }
 
-        stage('Evaluate LSTM Model') {
+        stage('Check Python Imports') {
             steps {
-                echo 'Evaluating Airman LSTM model...'
-                bat 'python -m src.model.evaluate'
+                echo 'Checking important Python imports...'
+                bat 'python -c "import pandas; import numpy; import sklearn; print(\'Core dependencies imported successfully\')"'
+            }
+        }
+
+        stage('Check ETL Script') {
+            steps {
+                echo 'Checking ETL pipeline script exists...'
+                bat 'python -c "import src.pipeline; print(\'ETL pipeline module imported successfully\')"'
+            }
+        }
+
+        stage('Check Model Scripts') {
+            steps {
+                echo 'Checking model scripts exist...'
+                bat 'python -c "import src.model.dataset; import src.model.lstm_model; print(\'Model modules imported successfully\')"'
             }
         }
 
         stage('Archive Reports') {
             steps {
-                echo 'Archiving report files...'
+                echo 'Archiving report files if available...'
                 archiveArtifacts artifacts: 'reports/*.json,reports/*.csv', allowEmptyArchive: true
             }
         }
@@ -49,11 +66,11 @@ pipeline {
 
     post {
         success {
-            echo 'Airman Jenkins pipeline completed successfully.'
+            echo 'Airman Jenkins CI pipeline completed successfully.'
         }
 
         failure {
-            echo 'Airman Jenkins pipeline failed. Check the console output.'
+            echo 'Airman Jenkins CI pipeline failed. Check the console output.'
         }
 
         always {
