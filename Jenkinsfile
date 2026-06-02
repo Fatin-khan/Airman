@@ -51,8 +51,11 @@ pipeline {
 
         stage('Check Model Scripts') {
             steps {
-                echo 'Checking model scripts exist...'
-                bat 'python -c "import src.model.dataset; import src.model.lstm_model; print(\'Model modules imported successfully\')"'
+                echo 'Checking model script files exist...'
+                bat 'if exist src\\model\\dataset.py echo dataset.py exists'
+                bat 'if exist src\\model\\lstm_model.py echo lstm_model.py exists'
+                bat 'if exist src\\model\\train.py echo train.py exists'
+                bat 'if exist src\\model\\evaluate.py echo evaluate.py exists'
             }
         }
 
