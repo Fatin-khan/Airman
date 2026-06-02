@@ -481,3 +481,59 @@ Docker Compose was also added to manage multiple services. The compose setup run
 Jenkins was installed and configured for CI/CD automation. A Jenkinsfile was added to the project, and Jenkins was connected to the GitHub repository. The Jenkins pipeline checks the project structure, installs dependencies, verifies important Python modules, and archives available report artifacts such as training_metrics.json.
 
 Cloud deployment, AWS S3, and Lambda triggers are postponed for a future sprint. For now, the project remains local-first, using Docker, Docker Compose, and Jenkins for automation.
+
+## Streamlit Dashboard
+
+Airman includes a local Streamlit dashboard for visualizing cleaned air quality data and LSTM forecasting results.
+
+The dashboard shows:
+
+* Project overview and dataset summary
+* Date range filter
+* City filter
+* Average, maximum, and minimum PM2.5 values
+* Total record count
+* PM2.5 concentration trend over time
+* Additional pollutant and weather trend charts
+* LSTM actual vs predicted PM2.5 forecast results
+* Model performance metrics including MAE, RMSE, train loss, and validation loss
+
+### Run the Dashboard Locally
+
+First, activate the virtual environment:
+
+```bash
+source /e/Me/Airman/venv/Scripts/activate
+```
+
+Then run:
+
+```bash
+python -m streamlit run dashboards/app.py --server.port 8502 --server.address 127.0.0.1
+```
+
+Open the dashboard in your browser:
+
+```text
+http://127.0.0.1:8502
+```
+
+The dashboard currently runs locally. EC2/cloud deployment is planned for a future sprint.
+
+### Dashboard Screenshots
+
+#### Dashboard Home
+
+![Dashboard Home](docs/screenshots/dashboard_home.png)
+
+#### PM2.5 Trend
+
+![PM2.5 Trend](docs/screenshots/pm25_trend.png)
+
+#### LSTM Forecast Results
+
+![Forecast Results](docs/screenshots/forecast_results.png)
+
+#### Model Performance
+
+![Model Performance](docs/screenshots/model_metrics.png)
