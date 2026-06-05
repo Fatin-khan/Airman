@@ -1,0 +1,5 @@
+boto3
+clickhouse-connect
+python-dotenv
+pandas
+numpy

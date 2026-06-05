@@ -2,15 +2,14 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --upgrade pip setuptools wheel
+
+RUN pip install --no-cache-dir --timeout 120 --retries 10 -r requirements.txt
 
 COPY . .
 
-CMD ["python", "-m", "src.pipeline"]
+EXPOSE 8501
+
+CMD ["streamlit", "run", "dashboards/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
